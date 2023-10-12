@@ -1,17 +1,15 @@
-// VARIABLES and DATA TYPES
+// Variablies and data tayps
 
 // Number 
-// int - butun sonlar
-// double  - qoldiq sonlar
-// Boolean - True va False
+//  int - butun sonlar
+//  double  - qoldiq sonlar
+// Boolean - True va False mantiqiy
 // List -  ro'yxat
 // Maps  -  xaritalar
 // Symbols - simvollar
 
-
-
 void main() 
 {
-  int integer = 10;
-  print(integer);
+    int integer = 10;
+    print(integer);
 }
