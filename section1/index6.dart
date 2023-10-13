@@ -1,40 +1,46 @@
 import 'dart:io';
 
-void main(List<String> args) {
-  int num1 = 12;
-  var num2 = 11;
-  // var num3 = 16;
+void main(List<String> args) 
+    {
+        print("pleas enter firs number:");
+        var num1 = stdin.readLineSync();
+        var inum1 = int.tryParse(num1 ?? "");
+    
+        print("Pleas enter second number:");
+        var num2 = stdin.readLineSync();
+        var inum2 = int.tryParse(num2 ?? "");
 
-  // if(num1 > num2)
-  // {
-  //   print("$num1 is bigger then $num2!");
-  // }
-  // else if(num1 < num2)
-  // {
-  //   print("$num2 is bigger then $num1!");
-  // }
-  // else
-  // {
-  //   print("$num1 and $num2 is equal!");
-  // }
+        
+        // Number compering
 
-  print("Pleas enter your name");
-  String? name = stdin.readLineSync();
+        // if(inum1 != null && inum2 != null)
+        // {
+        //     if(inum1 > inum2)
+        //         {
+        //             print("$num1 biger then $num2");
+        //         }
+        
+        //     else if(inum1 < inum2)
+        //         {
+        //             print("$num1 less then $num2");
+        //         }
+        //     else 
+        //         {
+        //             print("$num1 and $num2 are equal");
+        //         }
+        // }
 
-  print("Enter yuor judge");
-  int? judge = int.parse(stdin.readLineSync()!);
+        // else 
+        //     {
+        //         print("Wrong input");
+        //     }
 
-  if(judge < 90)
-  {
-    print("$name hasn't pass the excame :(");
-  }
-  else if(judge >= 90 && judge <= 180)
-  {
-    print("$name has pass the excame !");
-  }
-  else
-  {
-    print("wrong judge! ");
-  }
+        var blah;
+        // like lambida
+        if(inum1 != null && inum2 != null)
+            {
+                blah = (inum1 > inum2)? num1 : num2;
+                print(blah);
+            }
   
 }
