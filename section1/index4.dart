@@ -12,7 +12,8 @@ void main(List<String> args) {
     print("My name has ${name.length} letters!");
     print("My surname has ${surname.length} letters!");
 
-    print("This is veriy long row This is veriy long row This is veriy long row " "This is veriy long row");
+    print("This is veriy long row This is veriy long row This is veriy long row " 
+    "This is veriy long row");
 
     int num5 = 50;
     double num6 = 54.6;
