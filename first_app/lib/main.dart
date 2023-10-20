@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 void main(List<String> args) 
@@ -14,6 +15,7 @@ void main(List<String> args)
             "Hello Flutter",
             selectionColor: Colors.blueAccent,
             style: TextStyle(fontSize: 25.0, color: Colors.white))
+            
           ),
 
     
@@ -25,21 +27,37 @@ void main(List<String> args)
         // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
 
       
-        body: const Column(children: <Widget>
-          [
-            Text("Flutter appp", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.amber)),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[           
+               const Text("Rasimli sahifa", style: TextStyle(fontSize: 30, color: Colors.amber)),
 
-            Row(
-              children: <Widget>[
-              //    Container(child: Column(
-              //     width : 200,
-              //     height : 200,
-              //     color : Colors.green,
-              //    ))
-              ]
-              )
-            // Container(width: 200, height: 200, color: Colors.greenAccent, )
-          ])
+               IntrinsicHeight( 
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  // mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      margin: const EdgeInsets.all(4.0),
+                      // color: Colors.green,
+                      child: Column(children: <Widget>[FadeInImage.assetNetwork(
+                        placeholder: "lib/images/loanding.gif", image: 'https://picsum.photos/300/300?random=1000')],))),
+
+                  Expanded(child: Container(
+                    margin: const EdgeInsets.all(4.0),
+                    // color: Colors.green,
+                    child: Column(children: <Widget>[FadeInImage.assetNetwork(
+                        placeholder: "lib/images/loanding.gif", image: 'https://picsum.photos/300/300?random=1001')],))),
+                  
+                  Expanded(child: Container(
+                    margin: const EdgeInsets.all(4.0),
+                    // color: Colors.green,
+                    child: Column(children: <Widget>[FadeInImage.assetNetwork(
+                        placeholder: "lib/images/loanding.gif", image: 'https://picsum.photos/300/300?random=1003')],))),
+                ]))
+            ],)
                
         
           
