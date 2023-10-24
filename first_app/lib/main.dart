@@ -1,66 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-
-void main(List<String> args) 
-{
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    
-    theme: ThemeData(primarySwatch:  Colors.blue),
-    
-    home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Hello Flutter",
-            selectionColor: Colors.blueAccent,
-            style: TextStyle(fontSize: 25.0, color: Colors.white))
-            
-          ),
-
-    
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed : (){debugPrint("Button presed");},
-        //   backgroundColor: Colors.yellowAccent,
-          
-        //   child: const Icon(Icons.apps, color: Colors.black, size: 40.0,)),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-
-      
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[           
-               const Text("Rasimli sahifa", style: TextStyle(fontSize: 30, color: Colors.amber)),
-
-               IntrinsicHeight( 
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  // mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      margin: const EdgeInsets.all(4.0),
-                      // color: Colors.green,
-                      child: Column(children: <Widget>[FadeInImage.assetNetwork(
-                        placeholder: "lib/images/loanding.gif", image: 'https://picsum.photos/300/300?random=1000')],))),
-
-                  Expanded(child: Container(
-                    margin: const EdgeInsets.all(4.0),
-                    // color: Colors.green,
-                    child: Column(children: <Widget>[FadeInImage.assetNetwork(
-                        placeholder: "lib/images/loanding.gif", image: 'https://picsum.photos/300/300?random=1001')],))),
-                  
-                  Expanded(child: Container(
-                    margin: const EdgeInsets.all(4.0),
-                    // color: Colors.green,
-                    child: Column(children: <Widget>[FadeInImage.assetNetwork(
-                        placeholder: "lib/images/loanding.gif", image: 'https://picsum.photos/300/300?random=1003')],))),
-                ]))
-            ],)
-               
-        
-          
-    )));
+void main(List<String> args) {
+  runApp(const MyApp());
 }
 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primaryColor: Colors.amber),
+      home: MyStateFull(0),
+    );
+  }
+}
+
+class MyStateFull extends StatefulWidget {
+  int n = 0;
+  MyStateFull(this.n, {super.key});
+
+  void add() {
+    n++;
+  }
+
+  @override
+  MyStateFullWidget createState() => MyStateFullWidget();
+}
+
+class MyStateFullWidget extends State<MyStateFull> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: const Text("My app")),
+        // floatingActionButton: FloatingActionButton(
+        //     onPressed: () {
+        //       setState(() {
+        //         widget.n++;
+        //       });
+        //     },
+        // child: const Icon(Icons.add)),
+        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
+            Widget>[
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            const Text("Butooon Pressed time:",
+                style: TextStyle(fontSize: 25.0, color: Colors.blue)),
+          ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Text("${widget.n}",
+                style: const TextStyle(fontSize: 30.0, color: Colors.blue)),
+          ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            ElevatedButton(onPressed: () {}, child: const Icon(Icons.add)),
+            ElevatedButton(onPressed: () {}, child: const Icon(Icons.remove))
+          ])
+        ]));
+  }
+}
