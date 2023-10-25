@@ -41,20 +41,45 @@ class MyStateFullWidget extends State<MyStateFull> {
         //       });
         //     },
         // child: const Icon(Icons.add)),
-        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
-            Widget>[
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            const Text("Butooon Pressed time:",
-                style: TextStyle(fontSize: 25.0, color: Colors.blue)),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Text("${widget.n}",
-                style: const TextStyle(fontSize: 30.0, color: Colors.blue)),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            ElevatedButton(onPressed: () {}, child: const Icon(Icons.add)),
-            ElevatedButton(onPressed: () {}, child: const Icon(Icons.remove))
-          ])
-        ]));
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text("Butooon Pressed time:",
+                        style: TextStyle(fontSize: 25.0, color: Colors.blue)),
+                  ]),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text("${widget.n}",
+                        style: TextStyle(
+                            fontSize: 30.0,
+                            color: widget.n >= 0 ? Colors.green : Colors.red)),
+                  ]),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                        margin: EdgeInsets.all(16.0),
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                widget.n--;
+                              });
+                            },
+                            child: const Icon(Icons.remove))),
+                    Container(
+                        margin: EdgeInsets.all(16.0),
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                widget.n++;
+                              });
+                            },
+                            child: const Icon(Icons.add))),
+                  ])
+            ]));
   }
 }
