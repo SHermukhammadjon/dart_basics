@@ -28,27 +28,28 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Drawer(
-          child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-            const UserAccountsDrawerHeader(
+          child: ListView(padding: EdgeInsets.zero, children: const <Widget>[
+             UserAccountsDrawerHeader(
                 accountName: Text('Temirov SHermukhammad'),
                 accountEmail: Text('temirovshermukhammad@gmail.com'),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage:
                       NetworkImage("https://picsum.photos/200/200?random=1000"),
                 )),
-            const Text("Blah")
+            Text("Blah")
           ]),
         ),
         appBar: AppBar(title: const Text("Hello")),
         body: ListView.builder(
             itemCount: 15,
             itemBuilder: (BuildContext context, int index) {
-              return Container(
-                  margin: EdgeInsets.all(10),
-                  width: 50,
-                  height: 100,
-                  color: Colors.blueAccent,
-                  child: ListTile(
+              return Card(
+                // shape: ShapeBorde
+                child: ListTile(
+                    hoverColor: Colors.amberAccent,
+                    tileColor: Colors.blueAccent,
+                    
+                    
                     leading: Image.network(
                       "https://picsum.photos/200/200?random=${100 + index}",
                     ),
@@ -57,8 +58,10 @@ class MyHomePage extends StatelessWidget {
                     //     "https://picsum.photos/200/200?random=${100 + index}"),
                     title: Text("Blah $index"),
                     subtitle: const Text("Subtitle"),
+                    isThreeLine: true,
                     onTap: () => Navigator.pushNamed(context, '/page'),
-                  ));
+                  ),
+              );
             }));
   }
 }
