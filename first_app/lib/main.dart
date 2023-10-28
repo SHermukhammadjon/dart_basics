@@ -1,91 +1,131 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 void main(List<String> args) {
-  runApp(MyAppp());
+  runApp(MyApp());
 }
 
-class MyAppp extends StatelessWidget {
-  MyAppp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: "Defolt Tizim",
-        initialRoute: '/page',
-        routes: {
-          '/home': (context) => const MyHomePage(),
-          '/page': (context) => const Page()
-        });
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyHomeState(),
+        '/kirish' : (context) => Page()
+      },
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class MyHomeState extends StatefulWidget {
+  @override
+  _MyHomeState createState() => _MyHomeState();
+}
+
+class _MyHomeState extends State<MyHomeState> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Drawer(
-          child: ListView(padding: EdgeInsets.zero, children: const <Widget>[
-             UserAccountsDrawerHeader(
-                accountName: Text('Temirov SHermukhammad'),
-                accountEmail: Text('temirovshermukhammad@gmail.com'),
-                currentAccountPicture: CircleAvatar(
-                  backgroundImage:
-                      NetworkImage("https://picsum.photos/200/200?random=1000"),
-                )),
-            Text("Blah")
-          ]),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: const <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text('Davronbek Turdiyev'),
+              accountEmail: Text('davronbekturdiyev@gmail.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage("assets/images/bro.jpeg"),
+              ),
+            ),
+            Text("Blah"),
+          ],
         ),
-        appBar: AppBar(title: const Text("Hello")),
-        body: ListView.builder(
-            itemCount: 15,
-            itemBuilder: (BuildContext context, int index) {
-              return Card(
-                // shape: ShapeBorde
-                child: ListTile(
-                    hoverColor: Colors.amberAccent,
-                    tileColor: Colors.blueAccent,
-                    
-                    
-                    leading: Image.network(
-                      "https://picsum.photos/200/200?random=${100 + index}",
-                    ),
-
-                    //  Image.network(
-                    //     "https://picsum.photos/200/200?random=${100 + index}"),
-                    title: Text("Blah $index"),
-                    subtitle: const Text("Subtitle"),
-                    isThreeLine: true,
-                    onTap: () => Navigator.pushNamed(context, '/page'),
-                  ),
-              );
-            }));
+      ),
+      appBar: AppBar(title: const Text("Default Tizimi")),
+      body: ListView.builder(
+        itemCount: 1,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            margin: const EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            child: ListTile(
+              splashColor: Colors.white,
+              hoverColor: Colors.amber,
+              tileColor: Colors.blueAccent,
+              leading: const CircleAvatar(
+                backgroundColor: Colors.white54,
+                child: Icon(Icons.book, color: Colors.white),
+              ),
+              title: Text("Blah $index", style: TextStyle(color: Colors.white)),
+              subtitle: const Text("Subtitle", style: TextStyle(color: Colors.white60)),
+              isThreeLine: true,
+              onTap: () {Navigator.pushNamed(context, '/kirish');},
+              minLeadingWidth: 10.0,
+              minVerticalPadding: 10.9,
+            ),
+          );
+        },
+      ),
+    );
   }
 }
 
-class Page extends StatelessWidget {
-  const Page({super.key});
+class Page extends StatefulWidget
+{
+  @override
+  _PageState createState()=> _PageState();
+}
+
+class _PageState extends State<Page>{
+  String contextt = "Blah";
+  String path = " ";
+  String title = " ";
+
+
+  _PageState({this.title = "Title", this.path = "path"});
+
+  @override
+  void initState() {
+    super.initState();
+    getContent();
+  }
+
+  Future<void> getContent() async {
+    String content = await rootBundle.loadString("assets/book/kirish.txt");
+    setState(() {
+      contextt = content;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-        appBar: AppBar(
-            title: const Text("Ok ok"),
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pushNamed(context, '/home');
-              },
-            )),
-        body: ListView(children: const  <Widget>
-        [
-          Text("Blahe"),
-          Text("Blahe"),
-          Text("Blahe")
-        ])
-        );
+      appBar: AppBar(
+        title: Text(title),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushNamed(context, '/');
+          },
+        ),
+      ),
+      body: ListView(
+        children: <Widget>[
+          Container(
+            margin: edge,
+            child: Text(contextt),
+          ),
+        ],
+      ),
+    );
   }
 }
