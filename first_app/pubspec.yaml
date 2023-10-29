@@ -64,6 +64,14 @@ flutter:
     - assets/images/loanding.gif
     - assets/images/bro.jpeg
     - assets/book/kirish.txt
+    - assets/book/daxoliknima.txt
+    - assets/book/unming.txt
+    - assets/book/afsona.txt
+    - assets/book/mashiq.txt
+    - assets/book/konser.txt
+    - assets/book/efect.txt
+    - assets/book/defolt.txt
+    - assets/book/ishlat.txt
     # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -7,15 +7,25 @@ void main(List<String> args) {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  String pageda = "dcd";
+  MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => MyHomeState(),
-        '/kirish' : (context) => Page()
+        '/': (context) => MyHomeState(title: "Defolt Tizimi", titles: const ["Kirish", "Daxolik nima?", "10 000 soat nazariyasi", "Miya haiqda afsonalar", "Ong uchun mashiqlar", "Konsentrasiya", "SHaxsiy Effektivlik", "Defolt tizimi", "Defolt Tizmini Ishlatish algoritmi"]),
+        '/0' : (context) => Page(title: "Kirish"),
+        '/1' : (context) => Page(title: "Daxolik nima?", filePath: "assets/book/daxoliknima.txt"),
+        '/2' : (context) => Page(title: "10 000 soat nazariyasi", filePath: "assets/book/unming.txt"),
+        '/3' : (context) => Page(title: "Miya Haqida Afsonalar", filePath: "assets/book/afsona.txt"),
+        '/4' : (context) => Page(title: "Ong uchun mashiqlar", filePath: "assets/book/mashiq.txt"),
+        '/5' : (context) => Page(title: "Konsentrasiya", filePath: "assets/book/konser.txt"),
+        '/6' : (context) => Page(title: "SHaxsiy Effektivlik", filePath: "assets/book/efect.txt"),
+        '/7' : (context) => Page(title: "Defolt tizimi", filePath: "assets/book/defolt.txt"),
+        '/8' : (context) => Page(title: "Defolt Tizmini Ishlatish algoritmi", filePath: "assets/book/ishlat.txt"),
+        '/9' : (context) => Page(title: "Konsentrasiya", filePath: "assets/book/konser.txt"),
       },
       debugShowCheckedModeBanner: false,
     );
@@ -23,6 +33,10 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomeState extends StatefulWidget {
+  String title;
+  List<String> titles;
+  MyHomeState({this.title = "App Title", this.titles = const []});
+
   @override
   _MyHomeState createState() => _MyHomeState();
 }
@@ -32,6 +46,7 @@ class _MyHomeState extends State<MyHomeState> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -47,9 +62,9 @@ class _MyHomeState extends State<MyHomeState> {
           ],
         ),
       ),
-      appBar: AppBar(title: const Text("Default Tizimi")),
+      appBar: AppBar(title: Text(widget.title)),
       body: ListView.builder(
-        itemCount: 1,
+        itemCount: widget.titles.length.toInt(),
         itemBuilder: (BuildContext context, int index) {
           return Container(
             margin: const EdgeInsets.all(10.0),
@@ -64,10 +79,10 @@ class _MyHomeState extends State<MyHomeState> {
                 backgroundColor: Colors.white54,
                 child: Icon(Icons.book, color: Colors.white),
               ),
-              title: Text("Blah $index", style: TextStyle(color: Colors.white)),
-              subtitle: const Text("Subtitle", style: TextStyle(color: Colors.white60)),
+              title: Text(widget.titles[index], style: TextStyle(color: Colors.white)),
+              subtitle: Text("${index+1}-bob", style: TextStyle(color: Colors.white60)),
               isThreeLine: true,
-              onTap: () {Navigator.pushNamed(context, '/kirish');},
+              onTap: () {Navigator.pushNamed(context, '/$index');},
               minLeadingWidth: 10.0,
               minVerticalPadding: 10.9,
             ),
@@ -80,26 +95,27 @@ class _MyHomeState extends State<MyHomeState> {
 
 class Page extends StatefulWidget
 {
+  String filePath;
+  String title;
+  String info;
+  Page({this.filePath = "assets/book/kirish.txt", this.title = "Title", this.info = "Subtitle"});
+
   @override
   _PageState createState()=> _PageState();
 }
 
 class _PageState extends State<Page>{
-  String contextt = "Blah";
-  String path = " ";
-  String title = " ";
+  String contextt = "Error Ocured";
 
-
-  _PageState({this.title = "Title", this.path = "path"});
 
   @override
   void initState() {
     super.initState();
-    getContent();
+    getContent(widget.filePath);
   }
 
-  Future<void> getContent() async {
-    String content = await rootBundle.loadString("assets/book/kirish.txt");
+  Future<void> getContent(String filePath) async {
+    String content = await rootBundle.loadString(filePath);
     setState(() {
       contextt = content;
     });
@@ -110,7 +126,7 @@ class _PageState extends State<Page>{
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(widget.title),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -121,8 +137,9 @@ class _PageState extends State<Page>{
       body: ListView(
         children: <Widget>[
           Container(
-            margin: edge,
-            child: Text(contextt),
+            margin: EdgeInsets.all(10.0),
+
+            child: Text(contextt, style: TextStyle(fontSize: 17)),
           ),
         ],
       ),
