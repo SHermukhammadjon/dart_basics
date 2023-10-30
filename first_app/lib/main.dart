@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => MyHomeState(title: "Defolt Tizimi", titles: const ["Kirish", "Daxolik nima?", "10 000 soat nazariyasi", "Miya haiqda afsonalar", "Ong uchun mashiqlar", "Konsentrasiya", "SHaxsiy Effektivlik", "Defolt tizimi", "Defolt Tizmini Ishlatish algoritmi"]),
+        '/': (context) => MyHomeState(title: "Defolt Tizimi", titles:  const ["Kirish", "Daxolik nima?", "10 000 soat nazariyasi",
+          "Miya haiqda afsonalar", "Ong uchun mashiqlar", "Konsentrasiya", "SHaxsiy Effektivlik", "Defolt tizimi", "Defolt Tizmini Ishlatish algoritmi",
+        "Dak Xol Katalizator so'zlari", "Kuchaytruvchilar 2", "Defolt tizimi bilan ishlavchi odamlarnig hayotiy hikoyalari"]),
         '/0' : (context) => Page(title: "Kirish"),
         '/1' : (context) => Page(title: "Daxolik nima?", filePath: "assets/book/daxoliknima.txt"),
         '/2' : (context) => Page(title: "10 000 soat nazariyasi", filePath: "assets/book/unming.txt"),
@@ -25,7 +27,10 @@ class MyApp extends StatelessWidget {
         '/6' : (context) => Page(title: "SHaxsiy Effektivlik", filePath: "assets/book/efect.txt"),
         '/7' : (context) => Page(title: "Defolt tizimi", filePath: "assets/book/defolt.txt"),
         '/8' : (context) => Page(title: "Defolt Tizmini Ishlatish algoritmi", filePath: "assets/book/ishlat.txt"),
-        '/9' : (context) => Page(title: "Konsentrasiya", filePath: "assets/book/konser.txt"),
+        '/9' : (context) => Page(title: "Dak Xol Katalizator so'zlari", filePath: "assets/book/dakxol.txt"),
+        '/10' : (context) => Page(title: "Kuchaytruvchilar 2", filePath: "assets/book/kuchay.txt"),
+
+        '/11' : (context) => Page(title: "Hayotiy hikoyalari", filePath: "assets/book/defoltsistema.txt"),
       },
       debugShowCheckedModeBanner: false,
     );
@@ -58,7 +63,7 @@ class _MyHomeState extends State<MyHomeState> {
                 backgroundImage: AssetImage("assets/images/bro.jpeg"),
               ),
             ),
-            Text("Blah"),
+            // Text("Blah"),
           ],
         ),
       ),
